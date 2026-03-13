@@ -1,4 +1,4 @@
-Unserious, simple Idea organizer/documentor that can currently save dates, label idea's based on how much you care about it, and
+Simple Idea organizer/documentor that can currently save dates, label idea's based on how much you care about it, and
 saves it all within a Supabase Database. 
 
 Currently can do:
