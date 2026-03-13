@@ -1,29 +1,37 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 
-export default function OldIdeaTable() {
+export default function IdeasTable({ ideas }) {
   return (
-    <TableContainer component={Paper} sx={{ mt: 2 }}>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Idea Name</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell>ID</TableCell>
+            <TableCell>Idea</TableCell>
+            <TableCell>Urgency</TableCell>
+            <TableCell>Start Day</TableCell>
+            <TableCell>End Day</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
-          <TableRow>
-            <TableCell>App idea</TableCell>
-            <TableCell>A tracker for memories and thoughts</TableCell>
-            <TableCell>March 11</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>Game idea</TableCell>
-            <TableCell>A puzzle game with choices</TableCell>
-            <TableCell>March 9</TableCell>
-          </TableRow>
+          {ideas.map((idea) => (
+            <TableRow key={idea.id}>
+              <TableCell>{idea.id}</TableCell>
+              <TableCell>{idea.idea_meat}</TableCell>
+              <TableCell>{idea.urgency}</TableCell>
+              <TableCell>{idea.idea_start}</TableCell>
+              <TableCell>{idea.idea_end}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

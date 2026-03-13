@@ -1,7 +1,8 @@
 
-import { useState } from "react";
-import { Stack, ButtonBase, Slide,  TextField, Table, TableBody , TableCell, TableContainer, TableHead,TableRow,Paper  } from "@mui/material";
+import { useState, useEffect  } from "react";
+import { Stack, ButtonBase, Slide } from "@mui/material";
 import { Box } from "@mui/material";
+import { supabase } from "./supabaseClient";
 import OldIdeaTable from "./components/OldIdeaTable";
 import Calendar from "./components/Calendar";
 import NewIdeaTF from "./components/NewIdeaTF";
@@ -12,6 +13,7 @@ export default function App() {
   //show xIDea determines if the field value is visible and setXidea changes that value , doing useState(false) starts it as false
 
   const [openSection, setOpenSection] = useState(null);
+  const [ideas, setIdeas] = useState([]);
 
   const handleSectionClick = (section) => {
     if (openSection === section) {
@@ -29,6 +31,28 @@ export default function App() {
       setOpenSection(section);
     }
   };
+
+    
+  async function fetchIdeas() { //this part sends database information into the calndr (asking database to get all rows from ideas table)
+    const { data, error } = await supabase.from("ideas").select("*");
+
+    if (error) {
+      console.log("Error fetching ideas:", error);
+    } else {
+      setIdeas(data || []); //this line specifically stores the rows inside of react state variable ideas
+    }
+  }
+// eslint-disable-next-line react-hooks/set-state-in-effect
+useEffect(() => {
+  fetchIdeas();
+}, []);
+//this part changes database data into calendar data with title start and end being fullcalendario functions ig
+  const calendarEvents = ideas.map((idea) => ({
+    id: idea.id,
+    title: idea.idea_meat,
+    start: idea.idea_start,
+    end: idea.idea_end
+  }));
 
   return (
     //spacing is space inbetween the middle one and mt is the distance from top of page
@@ -74,9 +98,9 @@ export default function App() {
 
         <Slide in={openSection !== null} timeout={{enter: 1500}}>
         <Box sx={{ mt: 3 }}>
-          {openSection === "old" && <OldIdeaTable />}
-          {openSection === "new" && <NewIdeaTF />}
-          {openSection === "dates" && <Calendar />}
+          {openSection === "old" && <OldIdeaTable ideas={ideas} />}
+          {openSection === "new" && <NewIdeaTF onIdeaSaved={fetchIdeas}/>}
+          {openSection === "dates" && <Calendar events={calendarEvents}  />}
         </Box>
       </Slide>
 
@@ -84,3 +108,4 @@ export default function App() {
     </>
   );
 }
+    
