@@ -55,7 +55,7 @@ export default function NewIdea({ onIdeaSaved } ) {
       >
         <TextField
           id="standard-multiline-flexible"
-          label=" huh? what? huh? huh? what did you say? "
+          label="Whats on your mind?"
           multiline
           maxRows={4}
           fullWidth
