@@ -2,10 +2,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { pink,lightBlue,lightGreen } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'; //not urgent
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';// urgent
-import WhatshotIcon from '@mui/icons-material/Whatshot'; //so very urgent
+
 
 const label = { slotProps: { input: { 'aria-label': 'default' } } };
 
@@ -35,8 +32,6 @@ export default function CheckboxLabels({urgency, setUrgency}) {
   labelPlacement="bottom"
  
 />
-
-  
       <FormControlLabel
   control={
     <Checkbox

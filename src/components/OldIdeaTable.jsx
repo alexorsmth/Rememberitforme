@@ -14,8 +14,8 @@ export default function IdeasTable({ ideas }) {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Idea</TableCell>
+            
+            <TableCell>Idea</TableCell>w
             <TableCell>Urgency</TableCell>
             <TableCell>Start Day</TableCell>
             <TableCell>End Day</TableCell>
@@ -25,7 +25,7 @@ export default function IdeasTable({ ideas }) {
         <TableBody>
           {ideas.map((idea) => (
             <TableRow key={idea.id}>
-              <TableCell>{idea.id}</TableCell>
+              
               <TableCell>{idea.idea_meat}</TableCell>
               <TableCell>{idea.urgency}</TableCell>
               <TableCell>{idea.idea_start}</TableCell>

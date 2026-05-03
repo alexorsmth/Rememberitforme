@@ -1,40 +1,38 @@
-import { Stack, TextField, Typography, ButtonBase } from "@mui/material";
+import { Stack, TextField, Typography, ButtonBase, Dialog, DialogTitle, DialogContent } from "@mui/material";
 import NewIdeaCalendar from "./NewIdeaCalendar";
 import UrgencyButton from "./UrgencyButton";
 import { useState } from "react";
-import { supabase } from "../supabaseClient";
 
-export default function NewIdea({ onIdeaSaved } ) {
+
+
+const STORAGE_KEY = "ideas";
+
+export default function NewIdea({ onIdeaSaved }) {
   const [ideaText, setIdeaText] = useState("");
   const [urgency, setUrgency] = useState("");
+   const [calOpen, setCalOpen] = useState(false);
   const [selectedRange, setSelectedRange] = useState({
     start: "",
     end: "",
   });
 
- async function saveIdea() {
-    const { data, error } = await supabase
-      .from("ideas")
-      .insert([
-        {
-          idea_meat: ideaText,
-          urgency: urgency,
-          idea_start: selectedRange.start,
-          idea_end: selectedRange.end,
-        },
-      ])
-      .select();
+  function saveIdea() {
+    const newIdea = {
+      id: Date.now(),
+      idea_meat: ideaText,
+      urgency: urgency,
+      idea_start: selectedRange.start,
+      idea_end: selectedRange.end,
+    };
 
-    console.log("data:", data);
-    console.log("error:", error);
-
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return;
-    }
+    const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    const updatedIdeas = [...savedIdeas, newIdea];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedIdeas));
+    console.log("Saved locally:", newIdea);
+    console.log("All local ideas:", updatedIdeas);
 
     if (onIdeaSaved) {
-      await onIdeaSaved();
+      onIdeaSaved();
     }
 
     setIdeaText("");
@@ -59,6 +57,7 @@ export default function NewIdea({ onIdeaSaved } ) {
           multiline
           maxRows={4}
           fullWidth
+          value={ideaText}
           onChange={(e) => setIdeaText(e.target.value)}
           variant="standard"
         />
@@ -78,17 +77,38 @@ export default function NewIdea({ onIdeaSaved } ) {
           gutterBottom
         >
           When'd You Want That?
-         
         </Typography>
 
-        <NewIdeaCalendar setSelectedRange={setSelectedRange} />
-         <ButtonBase onClick={saveIdea}>
-            <img
-              src="/images/buttonpng.png"
-              alt="submitbutton"
-              style={{   width: 600,  height: 150, objectFit: "cover", display: "block",  }}
-            />
-          </ButtonBase>
+        <ButtonBase onClick={() => setCalOpen(true)}>
+          <img src="/images/dates.png" alt="Dates" className="menu-button" />
+
+          
+        </ButtonBase>
+
+        <Dialog
+          open={calOpen}
+          onClose={() => setCalOpen(false)}
+          maxWidth="lg"
+          fullWidth
+        >
+          <DialogTitle>Dates</DialogTitle>
+          <DialogContent>
+           <NewIdeaCalendar setSelectedRange={setSelectedRange} />
+          </DialogContent>
+        </Dialog>
+
+        <ButtonBase onClick={saveIdea}>
+          <img
+            src="/images/buttonpng.png"
+            alt="submitbutton"
+            style={{
+              width: 600,
+              height: 150,
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </ButtonBase>
       </Stack>
     </>
   );
