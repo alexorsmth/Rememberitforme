@@ -1,26 +1,39 @@
-import { Stack, TextField, Typography, ButtonBase, Dialog, DialogTitle, DialogContent } from "@mui/material";
+import {
+  Stack,
+  TextField,
+  Typography,
+  ButtonBase,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  MenuItem,
+} from "@mui/material";
 import NewIdeaCalendar from "./NewIdeaCalendar";
-import UrgencyButton from "./UrgencyButton";
 import { useState } from "react";
-
-
+import LabelSelect from "./LabelCreation";
 
 const STORAGE_KEY = "ideas";
 
 export default function NewIdea({ onIdeaSaved }) {
   const [ideaText, setIdeaText] = useState("");
-  const [urgency, setUrgency] = useState("");
-   const [calOpen, setCalOpen] = useState(false);
+  const [calOpen, setCalOpen] = useState(false);
+  const [ideaDesc, setIdeaDesc] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
   const [selectedRange, setSelectedRange] = useState({
     start: "",
     end: "",
   });
 
   function saveIdea() {
+    if (!ideaText) {
+      return;
+    }
+
     const newIdea = {
       id: Date.now(),
       idea_meat: ideaText,
-      urgency: urgency,
+      idea_desc: ideaDesc,
+      label: selectedLabel,
       idea_start: selectedRange.start,
       idea_end: selectedRange.end,
     };
@@ -36,7 +49,8 @@ export default function NewIdea({ onIdeaSaved }) {
     }
 
     setIdeaText("");
-    setUrgency("");
+    setIdeaDesc("");
+    setSelectedLabel("");
     setSelectedRange({
       start: "",
       end: "",
@@ -58,31 +72,31 @@ export default function NewIdea({ onIdeaSaved }) {
           maxRows={4}
           fullWidth
           value={ideaText}
+          slotProps={{ htmlInput: { maxLength: 15 } }}
           onChange={(e) => setIdeaText(e.target.value)}
           variant="standard"
         />
-
-        <Stack
-          direction="row"
-          spacing={5}
-          justifyContent="center"
-          sx={{ mt: 10 }}
-        >
-          <UrgencyButton urgency={urgency} setUrgency={setUrgency} />
-        </Stack>
-
-        <Typography
-          style={{ fontFamily: "monospace" }}
-          variant="h4"
-          gutterBottom
-        >
-          When'd You Want That?
-        </Typography>
+        {/* the desc. box */}
+        <TextField
+          id="outlined-multiline-static"
+          label="Description"
+          multiline
+          maxRows={4}
+          fullWidth
+          value={ideaDesc}
+          onChange={(e) => setIdeaDesc(e.target.value)}
+          variant="standard"
+        />
 
         <ButtonBase onClick={() => setCalOpen(true)}>
-          <img src="/images/dates.png" alt="Dates" className="menu-button" />
-
-          
+          <Typography 
+            sx={{ mt: 3, p: 2, border: "1px solid black" }}
+            style={{ fontFamily: "monospace" }}
+            variant="h4"
+            gutterBottom
+          >
+            When were you thinking?
+          </Typography>
         </ButtonBase>
 
         <Dialog
@@ -93,9 +107,14 @@ export default function NewIdea({ onIdeaSaved }) {
         >
           <DialogTitle>Dates</DialogTitle>
           <DialogContent>
-           <NewIdeaCalendar setSelectedRange={setSelectedRange} />
+            <NewIdeaCalendar setSelectedRange={setSelectedRange} />
           </DialogContent>
         </Dialog>
+
+        <LabelSelect
+          selectedLabel={selectedLabel}
+          setSelectedLabel={setSelectedLabel}
+        />
 
         <ButtonBase onClick={saveIdea}>
           <img
