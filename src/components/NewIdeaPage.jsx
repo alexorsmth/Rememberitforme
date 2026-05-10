@@ -38,7 +38,7 @@ export default function NewIdea({ onIdeaSaved }) {
       idea_end: selectedRange.end,
     };
 
-    const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; //loads saved idea 
     const updatedIdeas = [...savedIdeas, newIdea];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedIdeas));
     console.log("Saved locally:", newIdea);

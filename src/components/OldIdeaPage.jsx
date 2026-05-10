@@ -7,6 +7,7 @@ import {
   TableRow,
   Box,
   Button,
+  Typography,
 } from "@mui/material";
 
 import DescToolTip from "./DescToolTip";
@@ -27,7 +28,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       setSelectIDs([idea.id]);
     }, 700);
   }
-
+//toggleSelectedIdea
   function toggleSelectedIdea(id) {
     if (selectIDs.includes(id)) {
       setSelectIDs(selectIDs.filter((selectedId) => selectedId !== id));
@@ -35,11 +36,11 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       setSelectIDs([...selectIDs, id]);
     }
   }
-
+//cancelHold
   function cancelHold() {
     clearTimeout(holdTimer.current);
   }
-
+//deleteSelectedIdeas
   function deleteSelectedIdeas() {
     const updatedIdeas = ideas.filter((idea) => !selectIDs.includes(idea.id));
 
@@ -52,7 +53,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       onIdeasChanged();
     }
   }
-
+//the big 
   return (
     <Box>
       {deleteRow && (
