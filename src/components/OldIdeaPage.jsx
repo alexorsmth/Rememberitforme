@@ -8,7 +8,23 @@ import {
   Box,
   Button,
   Typography,
+  ButtonBase,
+  Stack,
 } from "@mui/material";
+
+function formatDate(dateString) {
+  if (!dateString) {
+    return "No date";
+  }
+
+  const date = new Date(dateString + "T00:00:00");
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 import DescToolTip from "./DescToolTip";
 export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
@@ -55,6 +71,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
   }
 //the big 
   return (
+   
+
     <Box>
       {deleteRow && (
         <Box sx={{ mb: 2 }}>
@@ -124,8 +142,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   />
                 </TableCell>
                 <TableCell>{idea.label}</TableCell>
-                <TableCell>{idea.idea_start}</TableCell>
-                <TableCell>{idea.idea_end}</TableCell>
+                <TableCell>{formatDate(idea.idea_start)}</TableCell>
+                <TableCell>{formatDate(idea.idea_end)}</TableCell>
               </TableRow>
             );
           })}

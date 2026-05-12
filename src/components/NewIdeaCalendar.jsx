@@ -8,6 +8,7 @@ export default function NewIdeaCalendar({ setSelectedRange }) {
       start: info.dateStr,
       end: info.dateStr,
     });
+
   };
 
   const handleSelect = (info) => {
@@ -28,6 +29,12 @@ export default function NewIdeaCalendar({ setSelectedRange }) {
       selectable={true}
       dateClick={handleDateClick}
       select={handleSelect}
+      events={setSelectedRange}
+      titleFormat={{
+        year: "numeric",
+        month: "short",
+      }}
+     
     />
   );
 }

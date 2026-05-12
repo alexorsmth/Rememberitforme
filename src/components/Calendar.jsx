@@ -8,6 +8,10 @@ export default function DatesCalendar({ events }) {
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
       events={events}
+      titleFormat={{
+        year: "numeric",
+        month: "short",
+      }}
     />
   );
 }

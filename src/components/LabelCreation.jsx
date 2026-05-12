@@ -16,14 +16,19 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
   const [labels, setLabels] = useState(() => {
     return JSON.parse(localStorage.getItem(LABELS_STORAGE_KEY)) || [];
   });
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [newLabelName, setNewLabelName] = useState("");
+  const [deleteLabel, setDeleteLabel] = useState("");
 
   function handleSelectChange(event) {
     const value = event.target.value;
 
     if (value === "add-new-label") {
-      setDialogOpen(true);
+      setCreateDialogOpen(true);
+      return;
+    } else if (value === "remove-label") {
+      setDeleteDialogOpen(true);
       return;
     }
 
@@ -43,7 +48,20 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
 
     setSelectedLabel(cleanedName);
     setNewLabelName("");
-    setDialogOpen(false);
+    setCreateDialogOpen(false);
+  }
+
+  function handleDeleteLabel() {
+    if (deleteLabel.trim() === "") {
+      return;
+    }
+
+    const updatedLabels = labels.filter((label) => label !== deleteLabel);
+    setLabels(updatedLabels);
+    localStorage.setItem(LABELS_STORAGE_KEY, JSON.stringify(updatedLabels));
+
+    setDeleteLabel("");
+    setDeleteDialogOpen(false);
   }
 
   return (
@@ -60,11 +78,17 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
             {label}
           </MenuItem>
         ))}
-
+        {/*create label here*/}
         <MenuItem value="add-new-label">+ Add new label</MenuItem>
+        {/*remove label here*/}
+        <MenuItem value="remove-label">- Remove a Label</MenuItem>
       </TextField>
 
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+      {/*Create label dialog */}
+      <Dialog
+        open={createDialogOpen}
+        onClose={() => setCreateDialogOpen(false)}
+      >
         <DialogTitle>Create New Label....</DialogTitle>
 
         <DialogContent>
@@ -79,8 +103,39 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          <Button onClick={() => setCreateDialogOpen(false)}>Cancel</Button>
           <Button onClick={handleSaveNewLabel}>Save</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/*delete label dialog */}
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+      >
+        <DialogTitle>Delete A Label....</DialogTitle>
+
+        <DialogContent>
+          <Stack spacing={2} sx={{ mt: 1, width: 300 }}>
+            <TextField
+              select
+              label="Choose label to delete"
+              value={deleteLabel}
+              onChange={(e) => setDeleteLabel(e.target.value)}
+              fullWidth
+            >
+              {labels.map((label) => (
+                <MenuItem key={label} value={label}>
+                  {label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Stack>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleDeleteLabel}>Delete</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -17,13 +17,17 @@ const STORAGE_KEY = "ideas";
 export default function NewIdea({ onIdeaSaved }) {
   const [ideaText, setIdeaText] = useState("");
   const [calOpen, setCalOpen] = useState(false);
-  const [ideaDesc, setIdeaDesc] = useState("");
+  const [ideaDesc, setIdeaDesc] = useState(""); 
   const [selectedLabel, setSelectedLabel] = useState("");
+
+
   const [selectedRange, setSelectedRange] = useState({
     start: "",
     end: "",
   });
 
+
+  
   function saveIdea() {
     if (!ideaText) {
       return;
@@ -37,7 +41,7 @@ export default function NewIdea({ onIdeaSaved }) {
       idea_start: selectedRange.start,
       idea_end: selectedRange.end,
     };
-
+     
     const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; //loads saved idea 
     const updatedIdeas = [...savedIdeas, newIdea];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedIdeas));
@@ -47,6 +51,7 @@ export default function NewIdea({ onIdeaSaved }) {
     if (onIdeaSaved) {
       onIdeaSaved();
     }
+   
 
     setIdeaText("");
     setIdeaDesc("");
@@ -56,6 +61,26 @@ export default function NewIdea({ onIdeaSaved }) {
       end: "",
     });
   }
+
+function formatDate(dateString) {
+  if (!dateString) {
+    return "No date";
+  }
+
+  const date = new Date(dateString + "T00:00:00");
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+ const dateButtonText = selectedRange.start
+  ? selectedRange.end !== selectedRange.start
+    ? `${formatDate(selectedRange.start)} to ${formatDate(selectedRange.end)}`
+    : formatDate(selectedRange.start)
+  : "When were you thinking?";
 
   return (
     <>
@@ -87,7 +112,8 @@ export default function NewIdea({ onIdeaSaved }) {
           onChange={(e) => setIdeaDesc(e.target.value)}
           variant="standard"
         />
-
+  {/* Date button*/}
+        
         <ButtonBase onClick={() => setCalOpen(true)}>
           <Typography 
             sx={{ mt: 3, p: 2, border: "1px solid black" }}
@@ -95,10 +121,10 @@ export default function NewIdea({ onIdeaSaved }) {
             variant="h4"
             gutterBottom
           >
-            When were you thinking?
+            {dateButtonText}
           </Typography>
         </ButtonBase>
-
+  {/* Dialog for calendar */}
         <Dialog
           open={calOpen}
           onClose={() => setCalOpen(false)}
@@ -108,9 +134,23 @@ export default function NewIdea({ onIdeaSaved }) {
           <DialogTitle>Dates</DialogTitle>
           <DialogContent>
             <NewIdeaCalendar setSelectedRange={setSelectedRange} />
+            <ButtonBase 
+            onClick={() => setCalOpen(false)}>
+              <img
+              src = "./images/Save.png"
+              alt="submitbutton"
+              style={{
+              width: 40,
+              height: 40,
+              objectFit: "cover",
+              display: "block",
+            }}
+              />
+            </ButtonBase>
           </DialogContent>
         </Dialog>
 
+  {/* label button */}
         <LabelSelect
           selectedLabel={selectedLabel}
           setSelectedLabel={setSelectedLabel}
