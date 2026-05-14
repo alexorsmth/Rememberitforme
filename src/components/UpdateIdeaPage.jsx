@@ -12,34 +12,26 @@ import DrawingBox from "./DrawingBox";
 export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
   const [drawingBoxes, setDrawingBoxes] = useState(idea?.drawingBoxes || []);
 
+  function formatDate(dateString) {
+  if (!dateString) {
+    return "No date";
+  }
+
+  const date = new Date(dateString + "T00:00:00");
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
   function updateDrawingBox(updatedBox) {
     setDrawingBoxes((prevBoxes) =>
       prevBoxes.map((box) => (box.id === updatedBox.id ? updatedBox : box)),
     );
   }
 
-  function saveIdeaDrawings() {
-    const savedIdeas = JSON.parse(localStorage.getItem("ideas")) || [];
-
-    const updatedIdeas = savedIdeas.map((savedIdea) => {
-      //load all ideas from local storage
-      if (savedIdea.id === idea.id) {
-        //find currently edited idea
-        return {
-          ...savedIdea, //replace box with new box array
-          drawingBoxes: drawingBoxes,
-        };
-      }
-
-      return savedIdea;
-    });
-
-    localStorage.setItem("ideas", JSON.stringify(updatedIdeas));
-
-    if (onIdeasChanged) {
-      onIdeasChanged();
-    }
-  }
 
   function addDrawingBox() {
     const newBox = {
@@ -92,8 +84,8 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
         {" "}
         {idea.idea_meat}{" "}
       </Typography>
-      <Typography>Start: {idea.idea_start || "No start date"}</Typography>
-      <Typography>End: {idea.idea_end || "No end date"}</Typography>
+      <Typography>Start: {formatDate(idea.idea_start) || "No start date"}</Typography>
+      <Typography>End: {formatDate(idea.idea_end) || "No end date"}</Typography>
       <Typography sx={{ mt: 2 }}>
         Description: {idea.idea_desc || "No description"}
       </Typography>
@@ -104,7 +96,7 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
             alt="Old Ideas"
             className="menu-button"
             width={100}
-            height={50}
+            height={100}
           />
         </ButtonBase>
 

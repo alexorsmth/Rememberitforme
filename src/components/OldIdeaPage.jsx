@@ -44,7 +44,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       setSelectIDs([idea.id]);
     }, 700);
   }
-//toggleSelectedIdea
+  //toggleSelectedIdea
   function toggleSelectedIdea(id) {
     if (selectIDs.includes(id)) {
       setSelectIDs(selectIDs.filter((selectedId) => selectedId !== id));
@@ -52,11 +52,11 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       setSelectIDs([...selectIDs, id]);
     }
   }
-//cancelHold
+  //cancelHold
   function cancelHold() {
     clearTimeout(holdTimer.current);
   }
-//deleteSelectedIdeas
+  //deleteSelectedIdeas
   function deleteSelectedIdeas() {
     const updatedIdeas = ideas.filter((idea) => !selectIDs.includes(idea.id));
 
@@ -69,39 +69,56 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       onIdeasChanged();
     }
   }
-//the big 
+  //the big
   return (
-   
+    <Box
+    sx={{ 
+      
 
-    <Box>
+    }}
+    >
       {deleteRow && (
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ 
+          
+          mb: 2,
+          
+          }}>
           <Button
+            sx={{border:"2px solid red"}}
             onClick={deleteSelectedIdeas}
             disabled={selectIDs.length === 0}
             color="error"
           >
-            Delete Selected
+            Delete
           </Button>
 
           <Button
+          
             onClick={() => {
               setDeleteRow(false);
               setSelectIDs([]);
             }}
-            sx={{ ml: 2 }}
+            sx={{ 
+              ml: 2 ,
+              border:  "2px solid blue"
+
+            }}
           >
             Cancel
           </Button>
         </Box>
       )}
-      <Table>
-        <TableHead>
+      <Table sx = {{
+        border: "4px solid #e18d43", 
+        bgcolor: '#e99e6d', color: '#000000',
+        fontFamily: "monospace", fontSize: "30px",  
+        mt: 6}}>
+        <TableHead sx = {{  border: "4px solid #e18d43",   }}>
           <TableRow>
-            <TableCell>Idea</TableCell>
-            <TableCell>Label</TableCell>
-            <TableCell>Start Day</TableCell>
-            <TableCell>End Day</TableCell>
+            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Idea</TableCell>
+            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Label</TableCell>
+            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Start Day</TableCell>
+            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px" ,  border: "#000000"}}>End Day</TableCell>
           </TableRow>
         </TableHead>
 
@@ -129,21 +146,21 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 }}
                 sx={{
                   cursor: "pointer",
-                  backgroundColor: isSelected ? "#ffe6e6" : "inherit",
+                  backgroundColor: isSelected ? "#e3d42b" : "inherit",
                   "&:hover": {
-                    backgroundColor: deleteRow ? "#fff0f0" : "#f5f5f5",
+                    backgroundColor: deleteRow ? "#dda728" : "#eaa54b",
                   },
                 }}
               >
-                <TableCell>
+                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px",  border: "3px solid #e18d43" }}>
                   <DescToolTip
                     text={idea.idea_meat}
                     ideaDesc={idea.idea_desc}
                   />
                 </TableCell>
-                <TableCell>{idea.label}</TableCell>
-                <TableCell>{formatDate(idea.idea_start)}</TableCell>
-                <TableCell>{formatDate(idea.idea_end)}</TableCell>
+                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px" , border: "3px solid #e18d43"}}>{idea.label}</TableCell>
+                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px", border: "3px solid #e18d43" }}>{formatDate(idea.idea_start)}</TableCell>
+                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px", border: "3px solid #e18d43" }}>{formatDate(idea.idea_end)}</TableCell>
               </TableRow>
             );
           })}

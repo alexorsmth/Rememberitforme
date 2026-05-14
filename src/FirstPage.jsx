@@ -62,7 +62,7 @@ export default function FirstPage() {
     <>
       <Box
         component="img"
-        src="/images/title.png"
+        src="/images/TitleThing.png"
         alt="Titlepageyay"
         sx={{
           display: "block",
@@ -81,25 +81,41 @@ export default function FirstPage() {
         sx={{ mt: 8 }}
       >
         {/* Left side buttons */}
-        <Stack direction="column" spacing={4}>
+        <Stack direction="column" spacing={1}>
           <ButtonBase onClick={() => handleSectionClick("old")}>
             <img
-              src="/images/old_idea.png"
+              src="/images/Updationidea.png"
               alt="Old Ideas"
               className="menu-button"
+              style={{
+                width: "200px",
+                height: "200px",
+              }}
             />
           </ButtonBase>
 
           <ButtonBase onClick={() => handleSectionClick("new")}>
             <img
-              src="/images/new_idea.png"
+              src="/images/CreationIdea.png"
               alt="New Idea"
               className="menu-button"
+              style={{
+                width: "200px",
+                height: "200px",
+              }}
             />
           </ButtonBase>
 
           <ButtonBase onClick={() => handleSectionClick("dates")}>
-            <img src="/images/dates.png" alt="Dates" className="menu-button" />
+            <img
+              src="/images/DateIdea.png"
+              style={{
+                width: "200px",
+                height: "200px",
+              }}
+              alt="Dates"
+              className="menu-button"
+            />
           </ButtonBase>
         </Stack>
 
@@ -107,20 +123,33 @@ export default function FirstPage() {
         <Box
           sx={{
             width: 800,
-            minHeight: 800,
-            border: "6px solid red",
+            minHeight: 500,
             p: 3,
           }}
         >
+          {openSection === null && (
+            <Box
+              component="img"
+              src="/images/Shopkeeper1.png"
+              alt="Shopkeeper"
+              sx={{
+                width: 800,
+                maxWidth: "100%",
+                display: "block",
+                mx: "auto",
+                
+              }}
+            />
+          )}
           <Slide in={openSection !== null} timeout={{ enter: 800 }}>
             <Box>
-
               {openSection === "old" && (
                 <OldIdeaTable
                   ideas={ideas}
-                  onIdeaSelect={(idea) => { //this right here is a function, giving oldIdeaTable a function, saying when you pick an idea, 
+                  onIdeaSelect={(idea) => {
+                    //this right here is a function, giving oldIdeaTable a function, saying when you pick an idea,
                     setSelectIdea(idea); //this stores the idea
-                    setOpenSection("ideaDetails"); //this changes the visible section of the detail page 
+                    setOpenSection("ideaDetails"); //this changes the visible section of the detail page
                   }}
                   onIdeasChanged={fetchIdeas}
                 />

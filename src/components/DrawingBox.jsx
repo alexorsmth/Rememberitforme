@@ -71,17 +71,6 @@ export default function DrawingBox({ box, onChange, onDelete }) {
 
  
 
-  //saves the description and the image
-  function saveThisBox() {
-    const canvas = canvasRef.current;
-    const drawingImage = canvas.toDataURL("image/png");
-
-    onChange({
-      ...box,
-      description: description,
-      drawingImage: drawingImage,
-    });
-  }
 
 //clears the canvas 
   function clearCanvas() {
@@ -147,7 +136,7 @@ function saveDrawingImage() {
       />
       <Stack
         direction="row"
-        spacing={6}
+        spacing={4}
         alignItems="flex-start"
         justifyContent="center"
         sx={{ mt: 8 }}
@@ -157,8 +146,8 @@ function saveDrawingImage() {
             src={iconImg}
             alt="Old Ideas"
             className="menu-button"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
           />
         </ButtonBase>
 
@@ -167,12 +156,20 @@ function saveDrawingImage() {
             src="./images/Trash bin.png"
             alt="Old Ideas"
             className="menu-button"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
           />
         </ButtonBase>
 
-        <Button variant="outlined" onClick={clearCanvas}>
+        <Button
+        sx = {{
+           fontFamily: "monospace", fontSize: "15px",  border: "3px solid black",
+           bgcolor: '#dc2c2c', color: '#ffffff',
+           boxShadow: 4
+        }}
+         variant="outlined"
+         
+         onClick={clearCanvas}>
           Clear Drawing
         </Button>
       </Stack>

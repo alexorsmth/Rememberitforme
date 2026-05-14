@@ -5,5 +5,11 @@
 body {
   margin: 0;
   font-family: system, monospace
+  
   ;
+}
+
+body {
+  background: linear-gradient(200deg, #626160, #626160, #626160);
+  background-attachment: fixed;
 }
