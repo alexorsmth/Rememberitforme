@@ -11,7 +11,7 @@ import {
 import NewIdeaCalendar from "./NewIdeaCalendar";
 import { useState } from "react";
 import LabelSelect from "./LabelCreation";
-
+import "../App.css";
 const STORAGE_KEY = "ideas";
 
 export default function NewIdea({ onIdeaSaved }) {
@@ -93,6 +93,7 @@ function formatDate(dateString) {
         <TextField
           id="standard-multiline-flexible"
           label="Whats on your mind?"
+          className="white-underline-textfield"
           multiline
           maxRows={4}
           fullWidth
@@ -105,18 +106,20 @@ function formatDate(dateString) {
         <TextField
           id="outlined-multiline-static"
           label="Description"
+          className="white-underline-textfield"
           multiline
           maxRows={4}
           fullWidth
           value={ideaDesc}
           onChange={(e) => setIdeaDesc(e.target.value)}
           variant="standard"
+          
         />
   {/* Date button*/}
         
         <ButtonBase onClick={() => setCalOpen(true)}>
           <Typography 
-            sx={{ mt: 3, p: 2, border: "1px solid black" }}
+            sx={{ mt: 3, p: 2, border: "1px solid white", color:"white" }}
             style={{ fontFamily: "monospace" }}
             variant="h4"
             gutterBottom

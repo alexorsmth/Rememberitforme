@@ -14,3 +14,39 @@
 }
 
 
+.white-underline-textfield .MuiInput-underline:before {
+  border-bottom-color: white;
+}
+
+.white-underline-textfield .MuiInput-underline:hover:before {
+  border-bottom-color: white;
+}
+
+.white-underline-textfield .MuiInput-underline:after {
+  border-bottom-color: white;
+}
+
+.white-underline-textfield label {
+  color: white;
+}
+
+.white-underline-textfield label.Mui-focused {
+  color: white;
+}
+
+.white-underline-textfield input,
+.white-underline-textfield textarea {
+  color: white;
+}
+
+.white-select-textfield .MuiOutlinedInput-notchedOutline {
+  border-color: white;
+}
+
+.fc {
+  color: white;
+}
+
+.fc a {
+  color: white;
+}

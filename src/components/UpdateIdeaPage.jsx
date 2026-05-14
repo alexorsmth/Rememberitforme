@@ -5,7 +5,9 @@ import {
   TextField,
   ButtonBase,
   Stack,
+  IconButton,
 } from "@mui/material";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { useState, useEffect } from "react";
 import DrawingBox from "./DrawingBox";
 
@@ -13,25 +15,24 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
   const [drawingBoxes, setDrawingBoxes] = useState(idea?.drawingBoxes || []);
 
   function formatDate(dateString) {
-  if (!dateString) {
-    return "No date";
+    if (!dateString) {
+      return "No date";
+    }
+
+    const date = new Date(dateString + "T00:00:00");
+
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   }
-
-  const date = new Date(dateString + "T00:00:00");
-
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
   function updateDrawingBox(updatedBox) {
     setDrawingBoxes((prevBoxes) =>
       prevBoxes.map((box) => (box.id === updatedBox.id ? updatedBox : box)),
     );
   }
-
 
   function addDrawingBox() {
     const newBox = {
@@ -80,25 +81,53 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          fontFamily: "monospace",
+          fontSize: "35px",
+          color: "white",
+          mt: 2,
+        }}
+      >
         {" "}
         {idea.idea_meat}{" "}
       </Typography>
-      <Typography>Start: {formatDate(idea.idea_start) || "No start date"}</Typography>
-      <Typography>End: {formatDate(idea.idea_end) || "No end date"}</Typography>
-      <Typography sx={{ mt: 2 }}>
+      <Typography
+        sx={{
+          fontFamily: "monospace",
+          fontSize: "25px",
+          color: "white",
+          mt: 2,
+        }}
+      >
+        Start: {formatDate(idea.idea_start) || "No start date"}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "monospace",
+          fontSize: "25px",
+          color: "white",
+          mt: 2,
+        }}
+      >
+        End: {formatDate(idea.idea_end) || "No end date"}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "monospace",
+          fontSize: "15px",
+          color: "white",
+          mt: 2,
+        }}
+      >
         Description: {idea.idea_desc || "No description"}
       </Typography>
       <Stack direction="column" spacing={4}>
-        <ButtonBase onClick={addDrawingBox}>
-          <img
-            src="./images/anotherOne.png"
-            alt="Old Ideas"
-            className="menu-button"
-            width={100}
-            height={100}
-          />
-        </ButtonBase>
+        <IconButton sx={{ color: "white" }} onClick={addDrawingBox}>
+          <AddCircleOutlineOutlinedIcon />
+        </IconButton>
 
         {drawingBoxes.map((box) => (
           <DrawingBox
