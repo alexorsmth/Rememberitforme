@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Box, Button, Stack, ButtonBase, TextField } from "@mui/material";
-
+import "../App.css";
 export default function DrawingBox({ box, onChange, onDelete }) {
   const canvasRef = useRef(null);
   const [description, setDescription] = useState(box.description || ""); 
@@ -72,7 +72,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
   function clearCanvas() {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     //clears the image but keeps description
     onChange({
@@ -176,6 +176,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
       <TextField
         id="outlined-multiline-static"
         label="Description"
+        className= "white-underline-textfield"
         multiline
         maxRows={4}
         fullWidth

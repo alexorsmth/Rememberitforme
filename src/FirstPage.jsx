@@ -88,8 +88,8 @@ export default function FirstPage() {
               alt="Old Ideas"
               className="menu-button"
               style={{
-                width: "200px",
-                height: "200px",
+                width: "150px",
+                height: "150px",
               }}
             />
           </ButtonBase>
@@ -100,8 +100,8 @@ export default function FirstPage() {
               alt="New Idea"
               className="menu-button"
               style={{
-                width: "200px",
-                height: "200px",
+                width: "150px",
+                height: "150px",
               }}
             />
           </ButtonBase>
@@ -110,8 +110,8 @@ export default function FirstPage() {
             <img
               src="/images/DateIdea.png"
               style={{
-                width: "200px",
-                height: "200px",
+                width: "150px",
+                height: "150px",
               }}
               alt="Dates"
               className="menu-button"
