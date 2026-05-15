@@ -1,5 +1,5 @@
 <img width="897" height="199" alt="image" src="https://github.com/user-attachments/assets/985341a3-97d4-4af8-b546-e6397ff2a57a" />
-Idea organizer, that allows user to draw while describing steps/expanding on ideas 
+- Idea organizer, that allows user to draw while describing steps/expanding on ideas 
 - Can create multiple drawings/descriptions and can save it all to a certain date [implementing FullCalendar.io]
 - Can organize by customizable labels
 - Update (delete, create, modify) ideas, labels, and drawings
