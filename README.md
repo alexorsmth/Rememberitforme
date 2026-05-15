@@ -1,3 +1,5 @@
+https://ideapit.netlify.app/ <== link to the whole thing
+
 <img width="897" height="199" alt="image" src="https://github.com/user-attachments/assets/985341a3-97d4-4af8-b546-e6397ff2a57a" />  
 
 - Idea organizer, that allows user to draw while describing steps/expanding on ideas  
