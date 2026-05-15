@@ -129,6 +129,11 @@ function formatDate(dateString) {
         </ButtonBase>
   {/* Dialog for calendar */}
         <Dialog
+          sx={{ //You can copy the code below in your theme
+        background: '#000',
+        '& .MuiPaper-root': {
+          background: '#000'
+        }}}
           open={calOpen}
           onClose={() => setCalOpen(false)}
           maxWidth="lg"

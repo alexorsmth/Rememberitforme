@@ -3,7 +3,7 @@ import { Box, Button, Stack, ButtonBase, TextField } from "@mui/material";
 
 export default function DrawingBox({ box, onChange, onDelete }) {
   const canvasRef = useRef(null);
-  const [description, setDescription] = useState(box.description || "");
+  const [description, setDescription] = useState(box.description || ""); 
   const [isDrawing, setIsDrawing] = useState(false);
   const [erasing, setErase] = useState(false);
 
@@ -24,7 +24,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
     image.src = box.drawingImage;
   }, [box.drawingImage]);
 
-  //get mouse position accurately so drawing doesnt suck
+  
   function getMousePosition(event) {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -49,7 +49,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
     setIsDrawing(true);
   }
 
-  //actually draws can set generally the size and stuff of the pen
+  //as long as mouse held down, it draws from the last position to the current one, a gajillion times
   function draw(event) {
     if (!isDrawing) {
       return;
@@ -57,11 +57,10 @@ export default function DrawingBox({ box, onChange, onDelete }) {
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
     const { x, y } = getMousePosition(event);
 
     context.lineTo(x, y);
-
+    //scam eraser, the pen just becomes white if its "erasing" 
     context.strokeStyle = erasing ? "white" : "black";
     context.lineWidth = erasing ? 6 : 1;
     context.lineCap = "round";
@@ -69,42 +68,39 @@ export default function DrawingBox({ box, onChange, onDelete }) {
     context.stroke();
   }
 
- 
-
-
-//clears the canvas 
+  //clears the canvas
   function clearCanvas() {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
-
+    //clears the image but keeps description
     onChange({
       ...box,
       description: description,
       drawingImage: "",
     });
   }
-//update description of the step whenever you update the thing i guess
-function updateDescription(newDescription) {
-  setDescription(newDescription);
+  //update description of the step whenever you update the thing i guess
+  function updateDescription(newDescription) {
+    setDescription(newDescription);
 
-  onChange({
-    ...box,
-    description: newDescription,
-  });
-}
+    onChange({
+      ...box,
+      description: newDescription,
+    });
+  }
 
-function saveDrawingImage() {
-  const canvas = canvasRef.current;
-  const drawingImage = canvas.toDataURL("image/png");
+  function saveDrawingImage() {
+    const canvas = canvasRef.current;
+    const drawingImage = canvas.toDataURL("image/png");
 
-  onChange({
-    ...box,
-    description: description,
-    drawingImage: drawingImage,
-  });
-}//stopDrawing 
+    onChange({
+      ...box,
+      description: description,
+      drawingImage: drawingImage,
+    });
+  } //stopDrawing
   function stopDrawing() {
     if (!isDrawing) {
       return;
@@ -162,14 +158,17 @@ function saveDrawingImage() {
         </ButtonBase>
 
         <Button
-        sx = {{
-           fontFamily: "monospace", fontSize: "15px",  border: "3px solid black",
-           bgcolor: '#dc2c2c', color: '#ffffff',
-           boxShadow: 4
-        }}
-         variant="outlined"
-         
-         onClick={clearCanvas}>
+          sx={{
+            fontFamily: "monospace",
+            fontSize: "15px",
+            border: "3px solid black",
+            bgcolor: "#dc2c2c",
+            color: "#ffffff",
+            boxShadow: 4,
+          }}
+          variant="outlined"
+          onClick={clearCanvas}
+        >
           Clear Drawing
         </Button>
       </Stack>

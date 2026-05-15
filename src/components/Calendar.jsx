@@ -4,11 +4,10 @@ import "../App.css";
 export default function DatesCalendar({ events }) {
   return (
     <FullCalendar
-      
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
       events={events}
-      className = "fc-theme-standar td"
+      //change this up for different date formats
       titleFormat={{
         year: "numeric",
         month: "short",

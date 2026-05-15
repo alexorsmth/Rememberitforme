@@ -71,20 +71,15 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
   }
   //the big
   return (
-    <Box
-    sx={{ 
-      
-
-    }}
-    >
+    <Box sx={{}}>
       {deleteRow && (
-        <Box sx={{ 
-          
-          mb: 2,
-          
-          }}>
+        <Box
+          sx={{
+            mb: 2,
+          }}
+        >
           <Button
-            sx={{border:"2px solid red"}}
+            sx={{ border: "2px solid red" }}
             onClick={deleteSelectedIdeas}
             disabled={selectIDs.length === 0}
             color="error"
@@ -93,32 +88,67 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
           </Button>
 
           <Button
-          
             onClick={() => {
               setDeleteRow(false);
               setSelectIDs([]);
             }}
-            sx={{ 
-              ml: 2 ,
-              border:  "2px solid blue"
-
+            sx={{
+              ml: 2,
+              border: "2px solid blue",
             }}
           >
             Cancel
           </Button>
         </Box>
       )}
-      <Table sx = {{
-        border: "4px solid #e18d43", 
-        bgcolor: '#e99e6d', color: '#000000',
-        fontFamily: "monospace", fontSize: "30px",  
-        mt: 6}}>
-        <TableHead sx = {{  border: "4px solid #e18d43",   }}>
+      <Table
+        sx={{
+          border: "4px solid #e18d43",
+          bgcolor: "#e99e6d",
+          color: "#000000",
+          fontFamily: "monospace",
+          fontSize: "30px",
+          mt: 6,
+        }}
+      >
+        <TableHead sx={{ border: "4px solid #e18d43" }}>
           <TableRow>
-            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Idea</TableCell>
-            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Label</TableCell>
-            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px",  border: "#000000" }}>Start Day</TableCell>
-            <TableCell sx={{ fontFamily: "monospace", fontSize: "30px" ,  border: "#000000"}}>End Day</TableCell>
+            <TableCell
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "30px",
+                border: "#000000",
+              }}
+            >
+              Idea
+            </TableCell>
+            <TableCell
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "30px",
+                border: "#000000",
+              }}
+            >
+              Label
+            </TableCell>
+            <TableCell
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "30px",
+                border: "#000000",
+              }}
+            >
+              Start Day
+            </TableCell>
+            <TableCell
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "30px",
+                border: "#000000",
+              }}
+            >
+              End Day
+            </TableCell>
           </TableRow>
         </TableHead>
 
@@ -152,15 +182,44 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   },
                 }}
               >
-                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px",  border: "3px solid #e18d43" }}>
+                <TableCell
+                  sx={{
+                    fontFamily: "ui-sans-serif",
+                    fontSize: "20px",
+                    border: "3px solid #e18d43",
+                  }}
+                >
                   <DescToolTip
-                    text={idea.idea_meat}
-                    ideaDesc={idea.idea_desc}
+                    text={idea.idea_meat} //DescToolTip.jsx spans this so it focuses only on this part 
                   />
                 </TableCell>
-                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px" , border: "3px solid #e18d43"}}>{idea.label}</TableCell>
-                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px", border: "3px solid #e18d43" }}>{formatDate(idea.idea_start)}</TableCell>
-                <TableCell sx={{ fontFamily: "ui-sans-serif", fontSize: "20px", border: "3px solid #e18d43" }}>{formatDate(idea.idea_end)}</TableCell>
+                <TableCell
+                  sx={{
+                    fontFamily: "ui-sans-serif",
+                    fontSize: "20px",
+                    border: "3px solid #e18d43",
+                  }}
+                >
+                  {idea.label}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontFamily: "ui-sans-serif",
+                    fontSize: "20px",
+                    border: "3px solid #e18d43",
+                  }}
+                >
+                  {formatDate(idea.idea_start)}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontFamily: "ui-sans-serif",
+                    fontSize: "20px",
+                    border: "3px solid #e18d43",
+                  }}
+                >
+                  {formatDate(idea.idea_end)}
+                </TableCell>
               </TableRow>
             );
           })}

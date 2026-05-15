@@ -1,11 +1,8 @@
 import Tooltip from "@mui/material/Tooltip";
-
-export default function DescToolTip({ text, ideaDesc }) {
-  const snippet =
-    ideaDesc && ideaDesc.length > 80
-      ? ideaDesc.slice(0, 80) + "..."
-      : ideaDesc || "No description";
-
+//hovering over something itll tell you how to delete something 
+//obtains the title from OldIdeaPage and spans only the idea name
+export default function DescToolTip({ text }) {
+  const snippet = "Hold for 3 seconds to try deleting!"
   return (
     <Tooltip title={snippet} arrow>
       <span>{text}</span>
