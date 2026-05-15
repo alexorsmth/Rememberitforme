@@ -1,4 +1,5 @@
-<img width="525" height="65" alt="image" src="https://github.com/user-attachments/assets/97afeda2-2db1-4a52-88c8-0ebfa28dbb8c" />Idea organizer, that allows user to draw while describing steps/expanding on ideas 
+<img width="897" height="199" alt="image" src="https://github.com/user-attachments/assets/985341a3-97d4-4af8-b546-e6397ff2a57a" />
+Idea organizer, that allows user to draw while describing steps/expanding on ideas 
 - Can create multiple drawings/descriptions and can save it all to a certain date [implementing FullCalendar.io]
 - Can organize by customizable labels
 - Update (delete, create, modify) ideas, labels, and drawings
@@ -6,7 +7,7 @@
 
 Instruction Manual:
 Click create to start your first idea:  
-<img width="826/2" height="703/2" alt="image" src="https://github.com/user-attachments/assets/90bdf5f9-8a04-4720-b807-0682d94e6c77" />
+<img width="826" height="703" alt="image" src="https://github.com/user-attachments/assets/90bdf5f9-8a04-4720-b807-0682d94e6c77" />
 - Name is mandatory but description, date (prompted by a dialog menu), and label are optional (but its nice). Click submit to finish your first idea! 
 <img width="1217" height="1005" alt="image" src="https://github.com/user-attachments/assets/52b03bfb-577d-4287-81ec-e7ceb1b3e9b1" />
 -drag and select thhe range of your dates, and hit the save icon once youre done selecting 
