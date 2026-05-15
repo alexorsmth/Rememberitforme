@@ -118,16 +118,18 @@ export default function DrawingBox({ box, onChange, onDelete }) {
         ref={canvasRef}
         width={500}
         height={300}
-        onMouseDown={startDrawing}
-        onMouseMove={draw}
-        onMouseUp={stopDrawing}
-        onMouseLeave={stopDrawing}
+        onPointerDown={startDrawing}
+        onPointerMove={draw}
+        onPointerUp={stopDrawing}
+        onPointerLeave={stopDrawing}
         sx={{
-          width: 500,
-          height: 300,
-          border: "2px solid black",
+          width: { xs: "100%", md: 500 },
+          height: { xs: 220, md: 300 },
+          maxWidth: "100%",
+          border: "4px solid black",
           backgroundColor: "white",
           cursor: erasing ? "cell" : "crosshair",
+          touchAction: "none",
         }}
       />
       <Stack

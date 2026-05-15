@@ -65,23 +65,28 @@ export default function FirstPage() {
         src="/images/TitleThing.png"
         alt="Titlepageyay"
         sx={{
-          display: "block",
-          width: 800,
-          maxWidth: "90%",
-          mx: "auto",
-          mt: 4,
-        }}
+    display: "block",
+    width: { xs: "95%", md: 800 },
+    maxWidth: "100%",
+    mx: "auto",
+    mt: { xs: 2, md: 4 },
+  }}
       />
       {/* This is the stuff that makes it sit to the right of the buttons */}
       <Stack
-        direction="row"
-        spacing={6}
-        alignItems="flex-start"
+        direction={{ xs: "column", md: "row" }}
+        spacing={{ xs: 3, md: 6 }}
+        alignItems="center"
         justifyContent="center"
-        sx={{ mt: 8 }}
+        sx={{ mt: { xs: 3, md: 8 } }}
       >
         {/* Left side buttons */}
-        <Stack direction="column" spacing={1}>
+        <Stack
+          direction={{ xs: "row", md: "column" }}
+          spacing={{ xs: 2, md: 4 }}
+          justifyContent="center"
+          alignItems="center"
+        >
           <ButtonBase onClick={() => handleSectionClick("old")}>
             <img
               src="/images/Updationidea.png"
@@ -133,12 +138,11 @@ export default function FirstPage() {
               src="/images/Shopkeeper1.png"
               alt="Shopkeeper"
               sx={{
-                width: 800,
-                maxWidth: "100%",
-                display: "block",
-                mx: "auto",
-                
-              }}
+    width: { xs: "100%", md: 800 },
+    maxWidth: "100%",
+    display: "block",
+    mx: "auto",
+  }}
             />
           )}
           <Slide in={openSection !== null} timeout={{ enter: 800 }}>

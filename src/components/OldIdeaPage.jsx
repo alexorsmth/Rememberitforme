@@ -71,7 +71,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
   }
   //the big
   return (
-    <Box sx={{}}>
+    <Box sx={{width: "100%", overflowX: "auto"}}>
       {deleteRow && (
         <Box
           sx={{
@@ -107,8 +107,9 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
           bgcolor: "#e99e6d",
           color: "#000000",
           fontFamily: "monospace",
-          fontSize: "30px",
+          fontSize:  {xs: "12px", md: "30px" },  
           mt: 6,
+           minWidth: 600,
         }}
       >
         <TableHead sx={{ border: "4px solid #e18d43" }}>
@@ -116,7 +117,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize: "30px",
+                fontSize:  {xs: "12px", md: "30px" },
                 border: "#000000",
               }}
             >
@@ -125,7 +126,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize: "30px",
+                fontSize:  {xs: "20px", md: "30px" },
                 border: "#000000",
               }}
             >
@@ -134,7 +135,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize: "30px",
+                fontSize:  {xs: "20px", md: "30px" },
                 border: "#000000",
               }}
             >
@@ -143,7 +144,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize: "30px",
+                fontSize:  {xs: "20px", md: "30px" },
                 border: "#000000",
               }}
             >
@@ -185,7 +186,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize: "20px",
+                    fontSize:  {xs: "12px", md:"20px"} ,
                     border: "3px solid #e18d43",
                   }}
                 >
@@ -196,7 +197,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize: "20px",
+                    fontSize:  {xs: "12px", md:"20px"},
                     border: "3px solid #e18d43",
                   }}
                 >
@@ -205,7 +206,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize: "20px",
+                    fontSize:  {xs: "12px", md:"20px"},
                     border: "3px solid #e18d43",
                   }}
                 >
@@ -214,7 +215,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize: "20px",
+                    fontSize:  {xs: "12px", md:"20px"},
                     border: "3px solid #e18d43",
                   }}
                 >

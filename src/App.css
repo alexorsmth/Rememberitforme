@@ -8,6 +8,13 @@
 .menu-button{
    width: 150;  height: 150; object-Fit: cover; display: block;
 }
+@media (max-width: 600px) {
+  .menu-button {
+    width: 90px;
+    height: 90px;
+  }
+}
+
 
 .card {
   padding: 2em;
