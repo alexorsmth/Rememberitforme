@@ -162,8 +162,8 @@ export default function FirstPage() {
               {openSection === "new" && <NewIdeaTF onIdeaSaved={fetchIdeas} />}
               {openSection === "dates" && <Calendar events={calendarEvents} />}
               {openSection === "ideaDetails" && (
-                <UpdateIdeaPage idea={selectIdea} />
-              )}
+  <UpdateIdeaPage idea={selectIdea} onIdeasChanged={fetchIdeas} />
+)}
             </Box>
           </Slide>
         </Box>
