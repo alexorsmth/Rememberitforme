@@ -15,7 +15,7 @@ export default function TopHeader() {
     >
       <Box
         sx={{
-          height: "64px",
+          height: "80px",
           px: { xs: 2, md: 4 },
           display: "flex",
           alignItems: "center",
@@ -29,10 +29,12 @@ export default function TopHeader() {
             fontWeight: 300,
             fontSize: "17px",
             color: "white",
-            fontFamily: "Lora"
+            fontFamily: "Lora",
+            
           }}
         >
           Saving...
+        
         </Typography>
         </Fade>
 

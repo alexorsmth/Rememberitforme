@@ -88,7 +88,7 @@ function formatDate(dateString) {
         direction="column"
         spacing={7}
         justifyContent="center"
-        sx={{ mt: 10 }}
+        sx={{ mt: 10, mb:  15 }}
       >
         <TextField
           id="standard-multiline-flexible"
@@ -115,6 +115,11 @@ function formatDate(dateString) {
           variant="standard"
           
         />
+  <LabelSelect
+          selectedLabel={selectedLabel}
+          setSelectedLabel={setSelectedLabel}
+        />
+
   {/* Date button*/}
         
         <ButtonBase onClick={() => setCalOpen(true)}>
@@ -127,6 +132,8 @@ function formatDate(dateString) {
             {dateButtonText}
           </Typography>
         </ButtonBase>
+
+        
   {/* Dialog for calendar */}
         <Dialog
           sx={{ //You can copy the code below in your theme
@@ -159,19 +166,16 @@ function formatDate(dateString) {
         </Dialog>
 
   {/* label button */}
-        <LabelSelect
-          selectedLabel={selectedLabel}
-          setSelectedLabel={setSelectedLabel}
-        />
+        
 
         <ButtonBase onClick={saveIdea}>
           <img
-            src="/images/buttonpng.png"
+            src="/images/SaveIdea1.png"
             alt="submitbutton"
             style={{
-              width: 600,
-              height: 150,
-              objectFit: "cover",
+              width: 400,
+              height: 100,
+              objectFit: "contain",
               display: "block",
             }}
           />

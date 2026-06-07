@@ -19,6 +19,8 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
     },
   ];
 
+  const middle = (cards.length - 1) / 2;
+  const rotateXValues = [10, 360, 10];
   return (
     <Box
       sx={{
@@ -29,12 +31,14 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
         zIndex: 9999,
 
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-end",
         justifyContent: "center",
+
+        perspective: "900px",
 
         "&:hover .floating-card": {
           mx: 2,
-          transform: "translateY(-18px) scale(1.08)",
+          transform: "rotateX(0deg) rotateY(0deg) translateY(-18px) scale(1.05)",
           opacity: 1,
         },
       }}
@@ -47,21 +51,36 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
           sx={{
             width: 105,
             height: 105,
-            mx: -1.5,
-            border: "1px solid #4c8aa5",
-            backgroundColor: "rgba(0, 0, 0, 0.65)",
+            mx: -4.5,
+
+            position: "relative",
             overflow: "hidden",
 
-            transition:
-              "transform 0.28s ease, margin 0.28s ease, opacity 0.28s ease",
-            transform: "translateY(0) scale(1)",
-            opacity: 1,
+            border: "4px solid #999000",
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            boxShadow: "0 12px 18px rgba(0,0,0,0.45)",
 
-            zIndex: cards.length - index,
+            transformOrigin: "center center",
+
+            transform: `
+              rotateX(${rotateXValues[index]}deg)
+              rotateY(${(index - middle) * 360}deg)
+              translateY(15px)
+              scale(0.95)
+            `,
+
+            opacity: 0.85,
+
+            transition:
+              "transform 0.32s ease, margin 0.32s ease, opacity 0.32s ease, border-color 0.32s ease",
+
+            zIndex: index + 1,
 
             "&:hover": {
-              transform: "translateY(-30px) scale(1.16) !important",
+              transform:
+                "rotateX(0deg) rotateY(0deg) translateY(-42px) scale(1.18) !important",
               borderColor: "#e0d500",
+              zIndex: 99,
             },
           }}
         >
@@ -73,6 +92,7 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              display: "block",
             }}
           />
 
@@ -85,6 +105,7 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
               color: "white",
               fontSize: "22px",
               fontFamily: "Lora",
+              textAlign: "center",
               textShadow: "2px 2px 2px black",
               pointerEvents: "none",
             }}

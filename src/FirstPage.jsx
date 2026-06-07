@@ -81,89 +81,114 @@ export default function FirstPage() {
     end: idea.idea_end,
   }));
 
-  return (
-    <>
-      <TopHeader />
-      <box>
-        <Typography
-          component="div"
-          sx={{
-            fontFamily: "Lora",
-            fontSize: "17px",
-            color: "#c93e3e",
-            textAlign: "center",
-            mt: 5,
-          }}
-        >
-          <Fade in={showFirst} timeout={2000}>
-            <Box component="span" sx={{ display: "block" }}>
-              nurture a vision
-            </Box>
-          </Fade>
+ return (
+  <>
+    <TopHeader />
 
-          <Fade in={showSecond} timeout={2000}>
-            <Box component="span" sx={{ display: "block" }}>
-              blossom to reality
-            </Box>
-          </Fade>
 
-          <Fade in={showThird} timeout={2000}>
-            <Box component="span" sx={{ display: "block" }}>
-              curate your idea
-            </Box>
-          </Fade>
-        </Typography>
-      </box>
-      <FloatingActionCards
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        boxSizing: "border-box",
+      }}
+    >
+      <Box
+      component="header"
+      sx={{
+        width: "100vw",
+        marginLeft: "calc(50% - 50vw)",
+        marginRight: "calc(50% - 50vw)",
+        backgroundColor: "#171717",
+        borderBottom: "1px solid Black",
+      }}
+      >
+      <Typography
+        component="div"
+        sx={{
+          fontFamily: "Lora",
+          fontSize: "17px",
+          color: "#c93e3e",
+          textAlign: "center",
+          mt: 2,
+          mb: 2,
+        }}
+      >
+        <Fade in={showFirst} timeout={2000}>
+          <Box component="span" sx={{ display: "block" }}>
+            Sandwich Bun
+          </Box>
+        </Fade>
+         
+        <Fade in={showSecond} timeout={2000}>
+          <Box component="span" sx={{ display: "block" }}>
+             Hamburger meat
+          </Box>
+        </Fade>
+
+        <Fade in={showThird} timeout={2000}>
+          <Box component="span" sx={{ display: "block" }}>
+            Sandwich Bun
+          </Box>
+        </Fade>
+      </Typography>
+        </Box>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 900,
+          minHeight: 500,
+          p: 3,
+          boxSizing: "border-box",
+        }}
+      >
+        {openSection === null && (
+          <Box
+            component="img"
+            src="/images/Shopkeeper1.png"
+            alt="Shopkeeper"
+            sx={{
+              width: { xs: "100%", md: 800 },
+              maxWidth: "100%",
+              display: "block",
+              mx: "auto",
+            }}
+          />
+        )}
+
+        <Slide in={openSection !== null} timeout={{ enter: 800 }}>
+          <Box>
+            {openSection === "old" && (
+              <OldIdeaTable
+                ideas={ideas}
+                onIdeaSelect={(idea) => {
+                  setSelectIdea(idea);
+                  setOpenSection("ideaDetails");
+                }}
+                onIdeasChanged={fetchIdeas}
+              />
+            )}
+
+            {openSection === "new" && <NewIdeaTF onIdeaSaved={fetchIdeas} />}
+
+            {openSection === "dates" && <Calendar events={calendarEvents} />}
+
+            {openSection === "ideaDetails" && (
+              <UpdateIdeaPage idea={selectIdea} onIdeasChanged={fetchIdeas} />
+            )}
+          </Box>
+        </Slide>
+      </Box>
+    </Box>
+
+    <FloatingActionCards
       onUpdate={() => setOpenSection("old")}
       onCreate={() => setOpenSection("new")}
       onDates={() => setOpenSection("dates")}
     />
-
-        {/* Right side red/content box */}
-        <Box
-          sx={{
-            width: 800,
-            minHeight: 500,
-            p: 3,
-          }}
-        >
-          {openSection === null && (
-            <Box
-              component="img"
-              src="/images/Shopkeeper1.png"
-              alt="Shopkeeper"
-              sx={{
-                width: { xs: "100%", md: 800 },
-                maxWidth: "100%",
-                display: "block",
-                mx: "auto",
-              }}
-            />
-          )}
-          <Slide in={openSection !== null} timeout={{ enter: 800 }}>
-            <Box>
-              {openSection === "old" && (
-                <OldIdeaTable
-                  ideas={ideas}
-                  onIdeaSelect={(idea) => {
-                    //this right here is a function, giving oldIdeaTable a function, saying when you pick an idea,
-                    setSelectIdea(idea); //this stores the idea
-                    setOpenSection("ideaDetails"); //this changes the visible section of the detail page
-                  }}
-                  onIdeasChanged={fetchIdeas}
-                />
-              )}
-
-              {openSection === "new" && <NewIdeaTF onIdeaSaved={fetchIdeas} />}
-              {openSection === "dates" && <Calendar events={calendarEvents} />}
-              {openSection === "ideaDetails" && (
-                <UpdateIdeaPage idea={selectIdea} onIdeasChanged={fetchIdeas} />
-              )}
-            </Box>
-          </Slide>
-        </Box>
-      
-    </>
-  );
+  </>
+);
 }
