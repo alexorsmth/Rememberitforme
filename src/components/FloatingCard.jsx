@@ -39,7 +39,7 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
         "&:hover .floating-card": {
           mx: 2,
           transform: "rotateX(0deg) rotateY(0deg) translateY(-18px) scale(1.05)",
-          opacity: 1,
+          opacity: 2,
         },
       }}
     >
@@ -56,9 +56,9 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
             position: "relative",
             overflow: "hidden",
 
-            border: "4px solid #999000",
+            border: "4px solid #00bbff",
             backgroundColor: "rgba(0, 0, 0, 0.75)",
-            boxShadow: "0 12px 18px rgba(0,0,0,0.45)",
+            boxShadow: "0 12px 18px rgba(68, 68, 68, 0.45)",
 
             transformOrigin: "center center",
 
@@ -69,7 +69,7 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
               scale(0.95)
             `,
 
-            opacity: 0.85,
+            opacity: 1,
 
             transition:
               "transform 0.32s ease, margin 0.32s ease, opacity 0.32s ease, border-color 0.32s ease",

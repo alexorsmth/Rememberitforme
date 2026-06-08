@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Stack, Slide, Box } from "@mui/material";
-
-import OldIdeaTable from "./components/UpdateIdeaTable";
+import ShopkeeperDialogue from "./components/ShopKeeperDialogue";
+import IdeasTable from "./components/UpdateIdeaTable";
 import Calendar from "./components/Calendar";
 import NewIdeaTF from "./components/NewIdeaPage";
 import UpdateIdeaPage from "./components/UpdateIdeaPage";
@@ -49,19 +49,7 @@ export default function FirstPage() {
         <TopHeader />
         <PoemFade alignContent="center" />
 
-        {openSection === null && (
-          <Box
-            component="img"
-            src="/images/Shopkeeper1.png"
-            alt="Shopkeeper"
-            sx={{
-              width: { xs: "100%", md: 800 },
-              maxWidth: "100%",
-              display: "block",
-              mx: "auto",
-            }}
-          />
-        )}
+        {openSection === null && <ShopkeeperDialogue ideas={ideas} />}
 
         <Slide in={openSection !== null} timeout={{ enter: 800 }}>
           <Box
