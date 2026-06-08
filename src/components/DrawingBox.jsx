@@ -180,6 +180,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
         label="Description"
         className= "white-underline-textfield"
         multiline
+        sx = {{mb: 10}}
         maxRows={4}
         fullWidth
         value={description}

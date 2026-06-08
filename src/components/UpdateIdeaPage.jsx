@@ -51,6 +51,7 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDrawingBoxes(idea?.drawingBoxes || []);
   }, [idea]);
 
@@ -80,51 +81,129 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
   }, [drawingBoxes, idea, onIdeasChanged]);
 
   return (
-    <Box>
-      <Typography
-        variant="h4"
-        gutterBottom
-        sx={{
-          fontFamily: "monospace",
-          fontSize: "35px",
-          color: "white",
-          mt: 2,
-        }}
+    <>
+    <Stack>
+    <Box
+  sx={{
+    position: "relative",
+    width: "570px",
+    maxWidth: "100%",
+    mx: "auto",
+    mt: 4,
+    mb: 4,
+  }}
+>
+  <Box
+    component="img"
+    src="/images/IdeaDetails.png"
+    alt="Idea details"
+    sx={{
+      width: "100%",
+      display: "block",
+    }}
+  />
+<Box
+sx={{
+      position: "absolute",
+      top: "70px",
+      left: "210px",
+      right: "45px",
+      bottom: "45px",
+
+      display: "flex",
+      flexDirection: "column",
+      gap: 1,
+
+      overflowY: "auto",
+    }}
+>
+     <Typography
+     sx={{
+        fontFamily: "Lora",
+        fontSize: { xs: "24px", md: "24px" },
+        color: "#e0d500",
+        mb:4
+      }}
+    >
+  
+      Here's your wonderful idea!
+    </Typography>
+
+</Box>
+  <Box
+    sx={{
+      position: "absolute",
+      top: "130px",
+      left: "30px",
+      right: "45px",
+      bottom: "45px",
+
+      display: "flex",
+      flexDirection: "column",
+      gap: 1,
+
+      overflowY: "auto",
+    }}
+  >
+   
+
+    <Typography
+      sx={{
+        fontFamily: "Lora",
+        fontSize: { xs: "22px", md: "22px" },
+        textDecoration: "underline",
+        textTransform: "uppercase",
+        lineHeight: 1,
+        color: "white",
+        wordBreak: "break-word",
+      }}
+    >
+      {idea.idea_meat}
+    </Typography>
+
+    <Typography
+      sx={{
+        fontFamily: "Lora",
+        fontSize: { xs: "15px", md: "15px" },
+        color: "#e0d500",
+      }}
+    >
+      Labelled under: {idea.label || "None"}
+    </Typography>
+
+
+          <Typography
+      sx={{
+        fontFamily: "Lora",
+        fontSize: { xs: "12px", md: "12px" },
+        lineHeight: 1.35,
+        color: "white",
+        whiteSpace: "pre-wrap",
+        wordBreak: "break-word",
+        mt: 0,
+      }}
+    >
+      {idea.idea_desc || "No description"}
+    </Typography>
+
+    <Typography
+      sx={{
+        fontFamily: "Lora",
+        fontSize: { xs: "14px", md: "14px" },
+        color: "#d8d8d8",
+      }}
+    >
+      Date: {formatDate(idea.idea_start)} -  {formatDate(idea.idea_end)}
+    </Typography>
+
+
+
+  </Box>
+</Box>
+
+      <Stack direction="column" spacing={6}
+      sx = {{mb:20}}
       >
-        {" "}
-        {idea.idea_meat}{" "}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "monospace",
-          fontSize: "25px",
-          color: "white",
-          mt: 2,
-        }}
-      >
-        Start: {formatDate(idea.idea_start) || "No start date"}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "monospace",
-          fontSize: "25px",
-          color: "white",
-          mt: 2,
-        }}
-      >
-        End: {formatDate(idea.idea_end) || "No end date"}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "monospace",
-          fontSize: "15px",
-          color: "white",
-          mt: 2,
-        }}
-      >
-        Description: {idea.idea_desc || "No description"}
-      </Typography>
-      <Stack direction="column" spacing={4}>
         <IconButton sx={{ color: "white" }} onClick={addDrawingBox}>
           <AddCircleOutlineOutlinedIcon />
         </IconButton>
@@ -138,6 +217,8 @@ export default function IdeaDetailsPage({ idea, onIdeasChanged }) {
           />
         ))}
       </Stack>
-    </Box>
+         </Stack>
+</>
+    
   );
 }

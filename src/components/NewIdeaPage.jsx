@@ -13,24 +13,21 @@ import { useState } from "react";
 import LabelSelect from "./LabelCreation";
 import "../App.css";
 const STORAGE_KEY = "ideas";
+import SaveIdeaDialogue from "./SaveButton";
 
 export default function NewIdea({ onIdeaSaved }) {
   const [ideaText, setIdeaText] = useState("");
   const [calOpen, setCalOpen] = useState(false);
-  const [ideaDesc, setIdeaDesc] = useState(""); 
+  const [ideaDesc, setIdeaDesc] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
-
-
   const [selectedRange, setSelectedRange] = useState({
     start: "",
     end: "",
   });
 
-
-  
   function saveIdea() {
-    if (!ideaText) {
-      return;
+    if (!ideaText.trim()) {
+      return false;
     }
 
     const newIdea = {
@@ -41,17 +38,15 @@ export default function NewIdea({ onIdeaSaved }) {
       idea_start: selectedRange.start,
       idea_end: selectedRange.end,
     };
-     
-    const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; //loads saved idea 
+
+    const savedIdeas = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     const updatedIdeas = [...savedIdeas, newIdea];
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedIdeas));
-    console.log("Saved locally:", newIdea);
-    console.log("All local ideas:", updatedIdeas);
 
     if (onIdeaSaved) {
       onIdeaSaved();
     }
-   
 
     setIdeaText("");
     setIdeaDesc("");
@@ -60,27 +55,61 @@ export default function NewIdea({ onIdeaSaved }) {
       start: "",
       end: "",
     });
+
+    return true;
   }
 
-function formatDate(dateString) {
-  if (!dateString) {
-    return "No date";
+  function formatDate(dateString) {
+    if (!dateString) {
+      return "No date";
+    }
+
+    const date = new Date(dateString + "T00:00:00");
+
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   }
 
-  const date = new Date(dateString + "T00:00:00");
+  const dialogueTextFieldStyle = {
+    backgroundColor: "black",
 
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+    "& .MuiOutlinedInput-root": {
+      color: "white",
+      fontFamily: "Lora",
+      backgroundColor: "black",
 
- const dateButtonText = selectedRange.start
-  ? selectedRange.end !== selectedRange.start
-    ? `${formatDate(selectedRange.start)} to ${formatDate(selectedRange.end)}`
-    : formatDate(selectedRange.start)
-  : "When were you thinking?";
+      "& fieldset": {
+        borderColor: "white",
+        borderWidth: "2px",
+      },
+
+      "&:hover fieldset": {
+        borderColor: "#e0d500",
+      },
+
+      "&.Mui-focused fieldset": {
+        borderColor: "#e0d500",
+      },
+    },
+
+    "& .MuiInputLabel-root": {
+      color: "white",
+      fontFamily: "Lora",
+    },
+
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "#e0d500",
+    },
+  };
+
+  const dateButtonText = selectedRange.start
+    ? selectedRange.end !== selectedRange.start
+      ? `${formatDate(selectedRange.start)} to ${formatDate(selectedRange.end)}`
+      : formatDate(selectedRange.start)
+    : "When were you thinking?";
 
   return (
     <>
@@ -88,59 +117,58 @@ function formatDate(dateString) {
         direction="column"
         spacing={7}
         justifyContent="center"
-        sx={{ mt: 10, mb:  15 }}
+        sx={{ mt: 10, mb: 15 }}
       >
         <TextField
-          id="standard-multiline-flexible"
-          label="Whats on your mind?"
-          className="white-underline-textfield"
+          label="What's on your mind?"
           multiline
           maxRows={4}
           fullWidth
           value={ideaText}
           slotProps={{ htmlInput: { maxLength: 15 } }}
           onChange={(e) => setIdeaText(e.target.value)}
-          variant="standard"
+          variant="outlined"
+          sx={dialogueTextFieldStyle}
         />
         {/* the desc. box */}
         <TextField
-          id="outlined-multiline-static"
           label="Description"
-          className="white-underline-textfield"
           multiline
           maxRows={4}
           fullWidth
           value={ideaDesc}
           onChange={(e) => setIdeaDesc(e.target.value)}
-          variant="standard"
-          
+          variant="outlined"
+          sx={dialogueTextFieldStyle}
         />
-  <LabelSelect
+        <LabelSelect
           selectedLabel={selectedLabel}
           setSelectedLabel={setSelectedLabel}
         />
 
-  {/* Date button*/}
-        
+        {/* Date button*/}
+
         <ButtonBase onClick={() => setCalOpen(true)}>
-          <Typography 
-            sx={{ mt: 3, p: 2, border: "1px solid white", color:"white" }}
-            style={{ fontFamily: "monospace" }}
+          <Typography
+            sx={{ mt: 3, p: 2, border: "2px solid white", color: "white",   backgroundColor: "black", fontSize: "20px", fontFamily: "Lora" }}
+
             variant="h4"
+          
             gutterBottom
           >
             {dateButtonText}
           </Typography>
         </ButtonBase>
 
-        
-  {/* Dialog for calendar */}
+        {/* Dialog for calendar */}
         <Dialog
-          sx={{ //You can copy the code below in your theme
-        background: '#000',
-        '& .MuiPaper-root': {
-          background: '#000'
-        }}}
+          sx={{
+            //You can copy the code below in your theme
+            background: "#000",
+            "& .MuiPaper-root": {
+              background: "#000",
+            },
+          }}
           open={calOpen}
           onClose={() => setCalOpen(false)}
           maxWidth="lg"
@@ -149,37 +177,24 @@ function formatDate(dateString) {
           <DialogTitle>Dates</DialogTitle>
           <DialogContent>
             <NewIdeaCalendar setSelectedRange={setSelectedRange} />
-            <ButtonBase 
-            onClick={() => setCalOpen(false)}>
+            <ButtonBase onClick={() => setCalOpen(false)}>
               <img
-              src = "./images/Save.png"
-              alt="submitbutton"
-              style={{
-              width: 40,
-              height: 40,
-              objectFit: "cover",
-              display: "block",
-            }}
+                src="./images/Save.png"
+                alt="submitbutton"
+                style={{
+                  width: 40,
+                  height: 40,
+                  objectFit: "cover",
+                  display: "block",
+                }}
               />
             </ButtonBase>
           </DialogContent>
         </Dialog>
 
-  {/* label button */}
-        
+        {/* label button */}
 
-        <ButtonBase onClick={saveIdea}>
-          <img
-            src="/images/SaveIdea1.png"
-            alt="submitbutton"
-            style={{
-              width: 400,
-              height: 100,
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
-        </ButtonBase>
+        <SaveIdeaDialogue onSaveIdea={saveIdea} />
       </Stack>
     </>
   );

@@ -103,22 +103,23 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
       )}
       <Table
         sx={{
-          border: "4px solid #e18d43",
-          bgcolor: "#e99e6d",
-          color: "#000000",
+          border: "4px solid #ffffff",
+          bgcolor: "#000000",
+          color: "#ffffff",
           fontFamily: "monospace",
           fontSize:  {xs: "12px", md: "30px" },  
           mt: 6,
            minWidth: 600,
         }}
       >
-        <TableHead sx={{ border: "4px solid #e18d43" }}>
+        <TableHead sx={{ border: "4px solid #ffffff" }}>
           <TableRow>
             <TableCell
               sx={{
                 fontFamily: "monospace",
                 fontSize:  {xs: "12px", md: "30px" },
-                border: "#000000",
+                border: "#ffffff",
+                color: "white",
               }}
             >
               Idea
@@ -127,7 +128,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
               sx={{
                 fontFamily: "monospace",
                 fontSize:  {xs: "20px", md: "30px" },
-                border: "#000000",
+                color: "white",
+                border: "#ffffff",
               }}
             >
               Label
@@ -136,7 +138,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
               sx={{
                 fontFamily: "monospace",
                 fontSize:  {xs: "20px", md: "30px" },
-                border: "#000000",
+                border: "#ffffff",
+                color: "white",
               }}
             >
               Start Day
@@ -146,6 +149,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 fontFamily: "monospace",
                 fontSize:  {xs: "20px", md: "30px" },
                 border: "#000000",
+                color: "white",
               }}
             >
               End Day
@@ -177,9 +181,9 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 }}
                 sx={{
                   cursor: "pointer",
-                  backgroundColor: isSelected ? "#e3d42b" : "inherit",
+                  backgroundColor: isSelected ? "#ffea00d8" : "inherit",
                   "&:hover": {
-                    backgroundColor: deleteRow ? "#dda728" : "#eaa54b",
+                    backgroundColor: deleteRow ? "#ffea00d8" : "#ffea00d8",
                   },
                 }}
               >
@@ -187,7 +191,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   sx={{
                     fontFamily: "ui-sans-serif",
                     fontSize:  {xs: "12px", md:"20px"} ,
-                    border: "3px solid #e18d43",
+                    border: "3px solid #e9e9e9",
+                    color: "white",
                   }}
                 >
                   <DescToolTip
@@ -198,7 +203,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   sx={{
                     fontFamily: "ui-sans-serif",
                     fontSize:  {xs: "12px", md:"20px"},
-                    border: "3px solid #e18d43",
+                    border: "3px solid #ffffff",
+                    color: "white",
                   }}
                 >
                   {idea.label}
@@ -207,7 +213,9 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   sx={{
                     fontFamily: "ui-sans-serif",
                     fontSize:  {xs: "12px", md:"20px"},
-                    border: "3px solid #e18d43",
+                    border: "3px solid #ffffff",
+
+                    color: "white",
                   }}
                 >
                   {formatDate(idea.idea_start)}
@@ -216,7 +224,8 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                   sx={{
                     fontFamily: "ui-sans-serif",
                     fontSize:  {xs: "12px", md:"20px"},
-                    border: "3px solid #e18d43",
+                    border: "3px solid #ffffff",
+                    color: "white",
                   }}
                 >
                   {formatDate(idea.idea_end)}

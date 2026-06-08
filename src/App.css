@@ -7,8 +7,11 @@ body,
   min-height: 100%;
 }
 
-.menu-button{
-   width: 150;  height: 150; object-Fit: cover; display: block;
+.menu-button {
+  width: 150;
+  height: 150;
+  object-fit: cover;
+  display: block;
 }
 @media (max-width: 600px) {
   .menu-button {
@@ -17,11 +20,9 @@ body,
   }
 }
 
-
 .card {
   padding: 2em;
 }
-
 
 .white-underline-textfield .MuiInput-underline:before {
   border-bottom-color: white;
@@ -51,11 +52,64 @@ body,
 .white-select-textfield .MuiOutlinedInput-notchedOutline {
   border-color: white;
 }
-
 .fc {
+  width: 100%;
+  max-width: 100%;
   color: white;
 }
 
-.fc a {
+.fc .fc-view-harness {
+  min-height: 600px;
+}
+
+.label-select {
+  background-color: rgb(255, 255, 255);
+  font-family: "Lora", serif;
+}
+
+/* Label */
+.label-select .MuiInputLabel-root {
+  color: white;
+  font-family: "Lora", serif;
+}
+
+.label-select .MuiInputLabel-root.Mui-focused {
+  color: #e0d500;
+}
+
+/* Select box */
+.label-select .MuiOutlinedInput-root {
+  background-color: black;
+  color: white;
+  font-family: "Lora", serif;
+  border-radius: 2px;
+}
+
+/* Border */
+.label-select .MuiOutlinedInput-notchedOutline {
+  border-color: white;
+  border-width: 3px;
+}
+
+/* Hover */
+.label-select .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #e0d500;
+}
+
+/* Focus */
+.label-select
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #e0d500;
+}
+
+/* Selected value text */
+.label-select .MuiSelect-select {
+  color: white;
+  font-family: "Lora", serif;
+}
+
+/* Dropdown arrow */
+.label-select .MuiSvgIcon-root {
   color: white;
 }

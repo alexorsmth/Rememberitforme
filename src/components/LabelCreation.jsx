@@ -9,7 +9,7 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import "../App.css"
+import "../App.css";
 const LABELS_STORAGE_KEY = "labels";
 
 export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
@@ -69,13 +69,9 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
       <TextField
         select
         label="Choose Label"
-        InputLabelProps={{
-    style: { color: 'white' },
-  }}
+        
         value={selectedLabel}
-      
-        className="white-select-textfield"
-  
+        className="label-select"
         onChange={handleSelectChange}
         fullWidth
       >
