@@ -8,7 +8,6 @@ export default function NewIdeaCalendar({ setSelectedRange }) {
       start: info.dateStr,
       end: info.dateStr,
     });
-
   };
 
   const handleSelect = (info) => {
@@ -34,7 +33,6 @@ export default function NewIdeaCalendar({ setSelectedRange }) {
         year: "numeric",
         month: "short",
       }}
-     
     />
   );
 }

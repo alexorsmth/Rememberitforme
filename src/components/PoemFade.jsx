@@ -48,19 +48,19 @@ export default function PoemFade() {
       >
         <Fade in={showFirst} timeout={2000}>
           <Box component="span" sx={{ display: "block" }}>
-           you are creative
+            I want a hot dog
           </Box>
         </Fade>
 
         <Fade in={showSecond} timeout={2000}>
           <Box component="span" sx={{ display: "block" }}>
-            make them as you imagine
+            Grilled on a charcoal fire
           </Box>
         </Fade>
 
         <Fade in={showThird} timeout={2000}>
           <Box component="span" sx={{ display: "block" }}>
-             store your ideas
+            Juicy dog goodness
           </Box>
         </Fade>
       </Typography>

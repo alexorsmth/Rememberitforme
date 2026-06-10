@@ -4,7 +4,7 @@ import "@fontsource/lora";
 
 export default function ShopkeeperDialogue({ ideas }) {
   const [shopkeeperMessage, setShopkeeperMessage] = useState(
-    "What's on your mind?"
+    "What's on your mind?",
   );
 
   const [dialogueIndex, setDialogueIndex] = useState(0);
@@ -12,14 +12,13 @@ export default function ShopkeeperDialogue({ ideas }) {
   function handleShopkeeperDialogueClick() {
     if (ideas.length === 0) {
       const noIdeaMessages = [
-        "Get to work!",
-        "No ideas? Not even one?",
-        "The shelf is empty...",
-        "Come back when inspiration strikes.",
+        "Got nothin for me..?",
+        "C'mon man",
+        "what are we doing.",
+        "Give me your work so we may tread majestically",
       ];
 
-      const nextMessage =
-        noIdeaMessages[dialogueIndex % noIdeaMessages.length];
+      const nextMessage = noIdeaMessages[dialogueIndex % noIdeaMessages.length];
 
       setShopkeeperMessage(nextMessage);
       setDialogueIndex(dialogueIndex + 1);
@@ -30,9 +29,9 @@ export default function ShopkeeperDialogue({ ideas }) {
 
     const ideaMessages = [
       `"${randomIdea.idea_meat}" sounds interesting, I guess...`,
-      `When's the last time you thought about "${randomIdea.idea_meat}"?`,
-      `Maybe "${randomIdea.idea_meat}" needs a little more care.`,
-      `You still remember "${randomIdea.idea_meat}", right?`,
+      `Don't forget about "${randomIdea.idea_meat}" okay?`,
+      `Whatever "${randomIdea.idea_meat}" was I hope it's worth it `,
+      `"${randomIdea.idea_meat}" is actually a nice idea.. you wouldn't mind if I took it... `,
     ];
 
     const nextMessage = ideaMessages[dialogueIndex % ideaMessages.length];
@@ -57,7 +56,7 @@ export default function ShopkeeperDialogue({ ideas }) {
         sx={{
           width: "100%",
           display: "block",
-          mt:5,
+          mt: 5,
         }}
       />
 

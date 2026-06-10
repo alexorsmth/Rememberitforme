@@ -41,8 +41,8 @@ export default function SaveIdeaDialogue({ onSaveIdea }) {
         position: "relative",
         width: "520px",
         maxWidth: "100%",
-        ml:5, mt:10,
-        
+        ml: 5,
+        mt: 10,
       }}
     >
       <Box

@@ -13,7 +13,7 @@ const STORAGE_KEY = "ideas"; // we write this so we can just write  SOTRAGE_KEY 
 
 // to make a button an image we show said image and wrap it in a clickable element assigning an onclick
 
-//main react component
+//use open section for deciding which page is being worked on [4 of em]
 export default function FirstPage() {
   const [openSection, setOpenSection] = useState(null);
   const [ideas, setIdeas] = useState([]);
@@ -61,7 +61,7 @@ export default function FirstPage() {
             }}
           >
             {openSection === "old" && (
-              <OldIdeaTable
+              <IdeasTable
                 ideas={ideas}
                 onIdeaSelect={(idea) => {
                   setSelectIdea(idea);

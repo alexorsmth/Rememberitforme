@@ -3,17 +3,14 @@ import { Box, ButtonBase, Typography } from "@mui/material";
 export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
   const cards = [
     {
-    
       image: "/images/Updationidea.png",
       onClick: onUpdate,
     },
     {
-      
       image: "/images/CreationIdea.png",
       onClick: onCreate,
     },
     {
-      
       image: "/images/DateIdea.png",
       onClick: onDates,
     },
@@ -38,14 +35,15 @@ export default function FloatingActionCards({ onUpdate, onCreate, onDates }) {
 
         "&:hover .floating-card": {
           mx: 2,
-          transform: "rotateX(0deg) rotateY(0deg) translateY(-18px) scale(1.05)",
+          transform:
+            "rotateX(0deg) rotateY(0deg) translateY(-18px) scale(1.05)",
           opacity: 2,
         },
       }}
     >
       {cards.map((card, index) => (
         <ButtonBase
-          key={card.label}
+          key={card.image}
           onClick={card.onClick}
           className="floating-card"
           sx={{

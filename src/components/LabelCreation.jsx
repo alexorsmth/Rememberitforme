@@ -69,7 +69,6 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
       <TextField
         select
         label="Choose Label"
-        
         value={selectedLabel}
         className="label-select"
         onChange={handleSelectChange}
@@ -81,9 +80,9 @@ export default function LabelSelect({ selectedLabel, setSelectedLabel }) {
           </MenuItem>
         ))}
         {/*create label here*/}
-        <MenuItem value="add-new-label">+ Add new label</MenuItem>
+        <MenuItem value="add-new-label">Add new label +++</MenuItem>
         {/*remove label here*/}
-        <MenuItem value="remove-label">- Remove a Label</MenuItem>
+        <MenuItem value="remove-label">Remove a Label ---</MenuItem>
       </TextField>
 
       {/*Create label dialog */}

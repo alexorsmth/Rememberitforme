@@ -3,7 +3,7 @@ import { Box, Button, Stack, ButtonBase, TextField } from "@mui/material";
 import "../App.css";
 export default function DrawingBox({ box, onChange, onDelete }) {
   const canvasRef = useRef(null);
-  const [description, setDescription] = useState(box.description || ""); 
+  const [description, setDescription] = useState(box.description || "");
   const [isDrawing, setIsDrawing] = useState(false);
   const [erasing, setErase] = useState(false);
 
@@ -24,7 +24,6 @@ export default function DrawingBox({ box, onChange, onDelete }) {
     image.src = box.drawingImage;
   }, [box.drawingImage]);
 
-  
   function getMousePosition(event) {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -60,7 +59,7 @@ export default function DrawingBox({ box, onChange, onDelete }) {
     const { x, y } = getMousePosition(event);
 
     context.lineTo(x, y);
-    //scam eraser, the pen just becomes white if its "erasing" 
+    //scam eraser, the pen just becomes white if its "erasing"
     context.strokeStyle = erasing ? "white" : "black";
     context.lineWidth = erasing ? 6 : 1;
     context.lineCap = "round";
@@ -178,9 +177,9 @@ export default function DrawingBox({ box, onChange, onDelete }) {
       <TextField
         id="outlined-multiline-static"
         label="Description"
-        className= "white-underline-textfield"
+        className="white-underline-textfield"
         multiline
-        sx = {{mb: 10}}
+        sx={{ mb: 10 }}
         maxRows={4}
         fullWidth
         value={description}

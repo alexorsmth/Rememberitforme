@@ -150,10 +150,16 @@ export default function NewIdea({ onIdeaSaved }) {
 
         <ButtonBase onClick={() => setCalOpen(true)}>
           <Typography
-            sx={{ mt: 3, p: 2, border: "2px solid white", color: "white",   backgroundColor: "black", fontSize: "20px", fontFamily: "Lora" }}
-
+            sx={{
+              mt: 3,
+              p: 2,
+              border: "2px solid white",
+              color: "white",
+              backgroundColor: "black",
+              fontSize: "20px",
+              fontFamily: "Lora",
+            }}
             variant="h4"
-          
             gutterBottom
           >
             {dateButtonText}

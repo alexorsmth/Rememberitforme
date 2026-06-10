@@ -71,7 +71,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
   }
   //the big
   return (
-    <Box sx={{width: "100%", overflowX: "auto"}}>
+    <Box sx={{ width: "100%", overflowX: "auto" }}>
       {deleteRow && (
         <Box
           sx={{
@@ -107,9 +107,9 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
           bgcolor: "#000000",
           color: "#ffffff",
           fontFamily: "monospace",
-          fontSize:  {xs: "12px", md: "30px" },  
+          fontSize: { xs: "12px", md: "30px" },
           mt: 6,
-           minWidth: 600,
+          minWidth: 600,
         }}
       >
         <TableHead sx={{ border: "4px solid #ffffff" }}>
@@ -117,7 +117,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize:  {xs: "12px", md: "30px" },
+                fontSize: { xs: "12px", md: "30px" },
                 border: "#ffffff",
                 color: "white",
               }}
@@ -127,7 +127,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize:  {xs: "20px", md: "30px" },
+                fontSize: { xs: "20px", md: "30px" },
                 color: "white",
                 border: "#ffffff",
               }}
@@ -137,7 +137,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize:  {xs: "20px", md: "30px" },
+                fontSize: { xs: "20px", md: "30px" },
                 border: "#ffffff",
                 color: "white",
               }}
@@ -147,7 +147,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
             <TableCell
               sx={{
                 fontFamily: "monospace",
-                fontSize:  {xs: "20px", md: "30px" },
+                fontSize: { xs: "20px", md: "30px" },
                 border: "#000000",
                 color: "white",
               }}
@@ -190,19 +190,19 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize:  {xs: "12px", md:"20px"} ,
+                    fontSize: { xs: "12px", md: "20px" },
                     border: "3px solid #e9e9e9",
                     color: "white",
                   }}
                 >
                   <DescToolTip
-                    text={idea.idea_meat} //DescToolTip.jsx spans this so it focuses only on this part 
+                    text={idea.idea_meat} //DescToolTip.jsx spans this so it focuses only on this part
                   />
                 </TableCell>
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize:  {xs: "12px", md:"20px"},
+                    fontSize: { xs: "12px", md: "20px" },
                     border: "3px solid #ffffff",
                     color: "white",
                   }}
@@ -212,7 +212,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize:  {xs: "12px", md:"20px"},
+                    fontSize: { xs: "12px", md: "20px" },
                     border: "3px solid #ffffff",
 
                     color: "white",
@@ -223,7 +223,7 @@ export default function IdeasTable({ ideas, onIdeaSelect, onIdeasChanged }) {
                 <TableCell
                   sx={{
                     fontFamily: "ui-sans-serif",
-                    fontSize:  {xs: "12px", md:"20px"},
+                    fontSize: { xs: "12px", md: "20px" },
                     border: "3px solid #ffffff",
                     color: "white",
                   }}
