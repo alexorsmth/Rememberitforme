@@ -30,4 +30,5 @@ Clicking dates just shows a calendar of the ideas that you set
 <img width="920" height="997" alt="image" src="https://github.com/user-attachments/assets/92451f39-9751-482f-aa84-7f904f99f724" />
 
 
+(obviously, super inspired by toby fox undertale)
 
